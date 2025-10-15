@@ -188,7 +188,7 @@ onMounted(() => {
   ctx = gsap.context((self) => {
     smoother = ScrollSmoother.create({
       smooth: 2, 
-      smoothTouch: 2,
+      smoothTouch: 0,
       effects: true, 
     });
     ScrollTrigger.create({

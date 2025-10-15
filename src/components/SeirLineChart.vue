@@ -88,7 +88,7 @@
         </v-btn-toggle>
 
     <div class="sliders">
-        <h3>Vaccinated Newborns</h3>
+        <!-- <h3>Vaccinated Newborns</h3>
         <v-slider
           v-model="fraction_vaccinated_newborns"
           max="1"
@@ -106,7 +106,7 @@
         >
       <template v-slot:thumb-label="{ modelValue }">
               {{ modelValue*100 + "%" }}
-          </template></v-slider>
+          </template></v-slider> -->
         <h3>Spread of Polio</h3>
         <v-slider
           v-model="beta"
@@ -588,10 +588,6 @@ async function recalculateDatasets() {
 }
 
 
-.carousel{
-  height: 60vh;
-}
-
 p{
   color: black;
 }
@@ -602,6 +598,10 @@ p{
   font-weight: 400;
   font-size: xx-large;
   text-align: center;
+}
+
+.carousel{
+  max-height: 50vh;
 }
 
 .changeNumberGreen{
