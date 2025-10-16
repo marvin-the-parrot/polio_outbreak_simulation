@@ -639,6 +639,7 @@ p{
 }
 
 .box-numbers{
+  height: 80%;
   padding: .5em;
   display: grid;
   grid-template-columns: 1fr 1fr;
