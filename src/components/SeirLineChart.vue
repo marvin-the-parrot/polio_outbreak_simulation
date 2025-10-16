@@ -10,7 +10,8 @@
       >  
 
       <v-carousel-item>
-        <div class="box-peoples car-item">
+        <div>
+          <div class="people-capsules car-item">
             <svg v-for="(item,index) in items" class="peoples" :class="{deadPeople: index<deadPeopleThreshold, paralysisPeople: index<paralysisPeopleThreshold && index<vaccinePeopleThreshold,vaccinatedPeople: index>100-(totalVaccinatedPeople/(N/peopleSpheres))}" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
         </div>
         <div class="seperator"></div>
@@ -33,6 +34,8 @@
           </div>
           
         </div>
+        </div>
+        
       </v-carousel-item>
 
       <v-carousel-item>
@@ -73,7 +76,6 @@
           <v-btn  value="option1" class="text-body-1" max-width="25%" >
             80%
           </v-btn>
-
           <v-btn value="no_vax" class="text-body-1" slim>
             No <br></br>Vaccines
           </v-btn>
@@ -88,7 +90,7 @@
         </v-btn-toggle>
 
     <div class="sliders">
-        <!-- <h3>Vaccinated Newborns</h3>
+        <h3>Vaccinated Newborns</h3>
         <v-slider
           v-model="fraction_vaccinated_newborns"
           max="1"
@@ -106,7 +108,7 @@
         >
       <template v-slot:thumb-label="{ modelValue }">
               {{ modelValue*100 + "%" }}
-          </template></v-slider> -->
+          </template></v-slider>
         <h3>Spread of Polio</h3>
         <v-slider
           v-model="beta"
@@ -166,7 +168,7 @@
           </v-btn>
         </v-btn-toggle> -->
       </div>
-    <div class="button-row">
+    <div class="recalc-button">
       <button @click="recalculateDatasets" class="btn-primary">
           Recalculate Outbreak
       </button>
@@ -251,8 +253,10 @@ let N = 1000000; // Population (10^6)
 const beta = ref(props.initialBeta); // Contact rate
 let gamma = 0.067; // Recovery rate
 let sigma = 0.13; // Rate of incubation
-let birth_rate = 0.005 ; //0.005 0.0001144
-let mortality_rate = 0.005; //0.005 0.0001144
+// let birth_rate = 0.005 ; //0.005 0.0001144
+let birth_rate = 0.0001144;
+// let mortality_rate = 0.005; //0.005 0.0001144
+let mortality_rate = 0.0001144; //0.005 0.0001144
 let vaccineInfectionRate = 3.79/10e6;
 let peopleSpheres = 100
 let prevent_auto_reset_after_click = false
@@ -582,14 +586,18 @@ async function recalculateDatasets() {
 </script>
 <style scoped>
 .sliders{
-  display:flex;
-  margin: .5em;
-  flex-direction: column;
+
 }
 
 
 p{
   color: black;
+}
+
+.wrapper {
+  display:flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .simHeader{
@@ -598,10 +606,6 @@ p{
   font-weight: 400;
   font-size: xx-large;
   text-align: center;
-}
-
-.carousel{
-  max-height: 50vh;
 }
 
 .changeNumberGreen{
@@ -617,6 +621,7 @@ p{
 }
 
 .lineChart{
+  height: 80%;
   padding-left: .5rem;
   padding-right: .5rem;
 }
@@ -638,21 +643,20 @@ p{
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-
 }
 
-.box-peoples{
+
+.people-capsules{
   padding: .5em;
   display: grid;
   grid-template-columns: repeat(10,1fr);
   grid-template-rows: repeat(10,1fr);
   justify-content: space-evenly;
   align-content: center;
-  height: 80%;
 }
 
 .peoples{
-  margin: .2em;
+  margin: .1em;
 }
 
 svg{
@@ -709,27 +713,34 @@ svg{
   font-size: x-large;
   color: black;
 }
-.wrapper {
-  height: 100vh;
-}
+
 
 #button{
   background-color: var(--accent-color);
 }
 
 .button-row{
-  position:absolute;
   display:flex;
   justify-content: space-evenly;
   width: 100vw;
   bottom:10px;
 }
 
+.recalc-button{
+  display:flex;
+  justify-content: space-evenly;
+  width: 100vw;
+  margin-bottom: 1em;
+}
+
 .btn-group{ 
   margin-top: 1vh;
   margin-bottom: 1vh;
+  overflow: hidden;
+
   height: 7vh;
   margin-left: .5em;
+  
 }
 
 

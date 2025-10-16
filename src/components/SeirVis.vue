@@ -96,6 +96,9 @@
         :initialBeta = initialSpreadRate
       ></SeirLineChart>
       </div>
+      <!-- <div class="box box-immun-pop">
+        Impressum
+      </div> -->
     </div>
   </div>
 
