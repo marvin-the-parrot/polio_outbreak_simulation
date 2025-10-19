@@ -617,7 +617,6 @@ p{
   color: red;
 }
 
-
 .car-item{
   height: 100%;
 }
@@ -646,11 +645,10 @@ p{
   grid-template-rows: 1fr 1fr;
 }
 
-
 .people-capsules{
   padding: .5em;
   display: grid;
-  height: 40vh;
+  height: 30vh;
   grid-template-columns: repeat(10,minmax(0,1fr));
   grid-template-rows: repeat(10,minmax(0,1fr));
   justify-content: space-evenly;

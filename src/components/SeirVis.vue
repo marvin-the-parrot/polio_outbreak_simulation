@@ -230,7 +230,7 @@ p{
 h1 {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 2em;
-  font-synthesis-weight: 900;
+  font-weight: 500;
   color: black;
 }
 h2,h3,h4,h5,h6{
