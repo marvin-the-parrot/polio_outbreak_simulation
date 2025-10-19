@@ -7,7 +7,7 @@
         <h1>Where are we simulating a polio outbreak?</h1>
         <button class="button" @click="zoomToCongo">
           <img src="../assets/drc_flag.png" style="background-color: grey;" class="person"></img>
-          <p>Democratic Republic of Congo</p>
+          <p>D. R. of Congo</p>
         </button>
         <button class="button" @click="zoomToIndia">
           <img src="../assets/india_flag.png" style="background-color: grey; " class="person"></img>
@@ -191,7 +191,7 @@ onMounted(() => {
   ctx = gsap.context((self) => {
     smoother = ScrollSmoother.create({
       smooth: 2, 
-      smoothTouch: 0,
+      smoothTouch: 0.5,
       effects: true, 
     });
     ScrollTrigger.create({
@@ -414,6 +414,10 @@ img + p{
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 
+}
+
+.box-sim{
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
 }
 
 .card{
