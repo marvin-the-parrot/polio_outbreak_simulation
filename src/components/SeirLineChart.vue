@@ -1,68 +1,69 @@
 <template>
   <div class="wrapper">
     <h2 class="simHeader">{{ simulation_duration_days }} days later</h2>
-    <v-carousel
-      class="carousel"
-      :show-arrows="false"
-      delimiter-icon="test"
-      :hide-delimiter-background="true"
-      :hide-delimiters="true"
-      >  
+    <div class="carousel">
+      <v-carousel
+        :show-arrows="false"
+        height="40vh"
+        delimiter-icon="test"
+        :hide-delimiter-background="true"
+        :hide-delimiters="true"
+        >  
 
-      <v-carousel-item>
-        <div>
-          <div class="people-capsules car-item">
-            <svg v-for="(item,index) in items" class="peoples" :class="{deadPeople: index<deadPeopleThreshold, paralysisPeople: index<paralysisPeopleThreshold && index<vaccinePeopleThreshold,vaccinatedPeople: index>100-(totalVaccinatedPeople/(N/peopleSpheres))}" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
-        </div>
-        <div class="seperator"></div>
-        <div class="legend">
-          <div class="legendblock">
-            <p class="legendText">{{ N/peopleSpheres }}</p>
-            <svg class="peoples" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
+        <v-carousel-item>
+          <div>
+            <div class="people-capsules car-item">
+              <svg v-for="(item,index) in items" class="peoples" :class="{deadPeople: index<deadPeopleThreshold, paralysisPeople: index<paralysisPeopleThreshold && index<vaccinePeopleThreshold,vaccinatedPeople: index>100-(totalVaccinatedPeople/(N/peopleSpheres))}" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
           </div>
-          <div class="legendblock">
-            <p class="legendText">Dead</p>
-            <svg class="peoples deadPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
+          <div class="seperator"></div>
+          <div class="legend">
+            <div class="legendblock">
+              <p class="legendText">{{ N/peopleSpheres }}</p>
+              <svg class="peoples" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
+            </div>
+            <div class="legendblock">
+              <p class="legendText">Dead</p>
+              <svg class="peoples deadPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
+            </div>
+            <div class="legendblock">
+              <p class="legendText">Paralysis</p>
+              <svg class="peoples paralysisPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
+            </div>
+            <div class="legendblock">
+              <p class="legendText">Vaccinated</p>
+              <svg class="peoples vaccinatedPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
+            </div>
+            
           </div>
-          <div class="legendblock">
-            <p class="legendText">Paralysis</p>
-            <svg class="peoples paralysisPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
-          </div>
-          <div class="legendblock">
-            <p class="legendText">Vaccinated</p>
-            <svg class="peoples vaccinatedPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
           </div>
           
-        </div>
-        </div>
-        
-      </v-carousel-item>
+        </v-carousel-item>
 
-      <v-carousel-item>
-        <div class="box-numbers car-item">
-          <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalDeaths) }}</p>
-            <p v-if="showChange" :class="{changeNumberGreen: (totalDeaths - totalDeathsOld)<0,changeNumberRed: (totalDeaths - totalDeathsOld)>0}"><span v-if="(totalDeaths - totalDeathsOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalDeaths - totalDeathsOld)) }}</p> <p>Deaths</p>
-          </div>  
-          <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalParalysis) }}</p>
-            <p v-if="showChange" :class="{changeNumberGreen: (totalParalysis- totalParalysisOld)<0,changeNumberRed: (totalParalysis- totalParalysisOld)>0}"><span v-if="(totalParalysis - totalParalysisOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalParalysis - totalParalysisOld)) }}</p> <p>Paralysis</p> 
+        <v-carousel-item>
+          <div class="box-numbers car-item">
+            <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalDeaths) }}</p>
+              <p v-if="showChange" :class="{changeNumberGreen: (totalDeaths - totalDeathsOld)<0,changeNumberRed: (totalDeaths - totalDeathsOld)>0}"><span v-if="(totalDeaths - totalDeathsOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalDeaths - totalDeathsOld)) }}</p> <p>Deaths</p>
+            </div>  
+            <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalParalysis) }}</p>
+              <p v-if="showChange" :class="{changeNumberGreen: (totalParalysis- totalParalysisOld)<0,changeNumberRed: (totalParalysis- totalParalysisOld)>0}"><span v-if="(totalParalysis - totalParalysisOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalParalysis - totalParalysisOld)) }}</p> <p>Paralysis</p> 
+            </div>
+            <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalVaccinatedPeople) }}</p>
+              <p v-if="showChange" :class="{changeNumberGreen: (totalVaccinatedPeople - totalVaccinatedPeopleOld)>0,changeNumberRed: (totalVaccinatedPeople - totalVaccinatedPeopleOld)<0}"><span v-if="(totalVaccinatedPeople - totalVaccinatedPeopleOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalVaccinatedPeople - totalVaccinatedPeopleOld)) }}</p> <p>Vaccinated</p>
+              <p>Costing: {{new Intl.NumberFormat('en-GB',{maximumFractionDigits:0}).format(totalVaccinatedPeople * cost_per_immunized_person) }} $ </p> 
+            </div>
+            <div class ="card"><p class="big-number" >{{  new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 1 }).format(totalVaccineRelatedDeaths) }}</p>
+              <p v-if="showChange" :class="{changeNumberGreen: (totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)<0,changeNumberRed: (totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)}"><span v-if="(totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 1 }).format((totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)) }}</p> <p>Polio Deaths due to Vaccine</p> 
+            </div>
           </div>
-          <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalVaccinatedPeople) }}</p>
-            <p v-if="showChange" :class="{changeNumberGreen: (totalVaccinatedPeople - totalVaccinatedPeopleOld)>0,changeNumberRed: (totalVaccinatedPeople - totalVaccinatedPeopleOld)<0}"><span v-if="(totalVaccinatedPeople - totalVaccinatedPeopleOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalVaccinatedPeople - totalVaccinatedPeopleOld)) }}</p> <p>Vaccinated</p>
-            <p>Costing: {{new Intl.NumberFormat('en-GB',{maximumFractionDigits:0}).format(totalVaccinatedPeople * cost_per_immunized_person) }} $ </p> 
-          </div>
-          <div class ="card"><p class="big-number" >{{  new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 1 }).format(totalVaccineRelatedDeaths) }}</p>
-            <p v-if="showChange" :class="{changeNumberGreen: (totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)<0,changeNumberRed: (totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)}"><span v-if="(totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 1 }).format((totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)) }}</p> <p>Polio Deaths due to Vaccine</p> 
-          </div>
-        </div>
-      </v-carousel-item>
+        </v-carousel-item>
 
-      <v-carousel-item>
-        <div class="lineChart car-item">
-          <Line id="seir-chart" :options="chartOptions" :data="chartData" style="height: 100%;"/>
-        </div>
-      </v-carousel-item>
-    </v-carousel>
-
+        <v-carousel-item>
+          <div class="lineChart car-item">
+            <Line id="seir-chart" :options="chartOptions" :data="chartData" style="height: 100%;"/>
+          </div>
+        </v-carousel-item>
+      </v-carousel>
+    </div>
     <v-btn-toggle
           v-model="selectedSettings"
           rounded="1"
@@ -616,12 +617,12 @@ p{
   color: red;
 }
 
+
 .car-item{
   height: 100%;
 }
 
 .lineChart{
-  height: 80%;
   padding-left: .5rem;
   padding-right: .5rem;
 }
@@ -639,7 +640,6 @@ p{
 }
 
 .box-numbers{
-  height: 80%;
   padding: .5em;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -650,22 +650,20 @@ p{
 .people-capsules{
   padding: .5em;
   display: grid;
-  grid-template-columns: repeat(10,1fr);
-  grid-template-rows: repeat(10,1fr);
+  height: 40vh;
+  grid-template-columns: repeat(10,minmax(0,1fr));
+  grid-template-rows: repeat(10,minmax(0,1fr));
   justify-content: space-evenly;
   align-content: center;
 }
 
-.peoples{
-  margin: .1em;
-}
-
 svg{
-  max-width: 8vw;
+  height: 100%;
+  width: 100%;
 }
 
 .legend{
-  height: 10vh;
+  height: 7vh;
   display: flex;
   justify-content: space-evenly;
 }

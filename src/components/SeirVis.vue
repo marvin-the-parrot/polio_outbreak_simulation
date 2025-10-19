@@ -301,6 +301,7 @@ h2,h3,h4,h5,h6{
   align-self: center;
   padding: 2em;
   font-size: x-large;
+  font-weight: 700;
   color: black;
 }
 
