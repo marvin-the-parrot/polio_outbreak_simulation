@@ -8,9 +8,9 @@
         delimiter-icon="test"
         :hide-delimiter-background="true"
         :hide-delimiters="true"
-        >  
+        >
 
-        <v-carousel-item>
+        <v-carousel-item> 
           <div>
             <div class="people-capsules car-item">
               <svg v-for="(item,index) in items" class="peoples" :class="{deadPeople: index<deadPeopleThreshold, paralysisPeople: index<paralysisPeopleThreshold && index<vaccinePeopleThreshold,vaccinatedPeople: index>100-(totalVaccinatedPeople/(N/peopleSpheres))}" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
@@ -81,7 +81,7 @@
             No <br></br>Vaccines
           </v-btn>
 
-          <v-btn value="immune_pop_no_vax" class="text-body-1"  slim>
+          <v-btn value="immune_pop" class="text-body-1"  slim>
             Immune Population <br></br> No Vaccines
           </v-btn>
 
@@ -91,7 +91,7 @@
         </v-btn-toggle>
 
     <div class="sliders">
-        <h3>Vaccinated Newborns</h3>
+        <!-- <h3>Vaccinated Newborns</h3>
         <v-slider
           v-model="fraction_vaccinated_newborns"
           max="1"
@@ -109,7 +109,7 @@
         >
       <template v-slot:thumb-label="{ modelValue }">
               {{ modelValue*100 + "%" }}
-          </template></v-slider>
+          </template></v-slider> -->
         <h3>Spread of Polio</h3>
         <v-slider
           v-model="beta"
@@ -129,7 +129,7 @@
             {{ betaLabels[modelValue] }}
           </template>
         </v-slider>
-        <h3>Immune Population at Start</h3>
+        <h3>Vaccinated Population at Start</h3>
         <v-slider
           v-model="fractio_immune_population"
           max="1"
@@ -149,25 +149,25 @@
               {{ modelValue*100 + "%" }}
           </template>
         </v-slider>
-        <!-- <h3>Vaccine Used</h3>
+        <h3>Vaccine Used</h3>
         <v-btn-toggle
           v-model="selectedVaccine"
           rounded="1"
           group
           class="btn-group"
+          color="#99621E"
+          base-color="#FEE1C7"
+          elevation="6"
         >
-          <v-btn value="opv" class="text-body-1"  max-width="25%" >
+          <v-btn value="opv" class="text-body-1"  >
             OPV (Old)
           </v-btn>
 
-          <v-btn value="ipv" class="text-body-1" slim>
+          <v-btn value="ipv" class="text-body-1" >
             IPV (Modern)
           </v-btn>
 
-          <v-btn value="10xopv" class="text-body-1"  slim>
-            10 x OPV
-          </v-btn>
-        </v-btn-toggle> -->
+        </v-btn-toggle>
       </div>
     <div class="recalc-button">
       <button @click="recalculateDatasets" class="btn-primary">
@@ -186,7 +186,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, L
 // @ts-ignore
 import { calculateSEIRData } from '../scripts/seirData'
 
-const props = defineProps({initialDisplay: String,initialVaccineRate: Number, initialImmunePopulation: Number, initialBeta: Number})
+const props = defineProps({initialDisplay: String,initialVaccineRate: Number, initialImmunePopulation: Number, initialBeta: Number, initialVaccineUsed: String})
 
 const percentageLabels: { [key: string]: string } = {
   0: '0%',
@@ -261,16 +261,16 @@ let mortality_rate = 0.0001144; //0.005 0.0001144
 let vaccineInfectionRate = 3.79/10e6;
 let peopleSpheres = 100
 let prevent_auto_reset_after_click = false
+let cost_per_immunized_person = 0.14 // https://www.unicef.org/media/161751/file/Standard%20costs%20of%20fully%20vaccinating%20a%20child_UNICEF_2024.pdf.pdf
 const simulation_duration_days = 365 * 1 // 1 years
 const fraction_vaccinated_newborns = ref(props.initialVaccineRate);
 const fractio_immune_population = ref(props.initialImmunePopulation);
 const infection_mortality_rate = 0.005;
 const infection_paralysis_rate = 0.05;
-const cost_per_immunized_person = 0.14 // https://www.unicef.org/media/161751/file/Standard%20costs%20of%20fully%20vaccinating%20a%20child_UNICEF_2024.pdf.pdf
 const display = ref(props.initialDisplay);
 const items = ref([] as number[]);
 const selectedSettings = ref("custom");
-const selectedVaccine = ref("");
+const selectedVaccine = ref(props.initialVaccineUsed);
 const showChange = ref(false);
 
 const totalDeaths = ref(0.0);
@@ -309,17 +309,17 @@ watch(selectedSettings,(newValue,oldValue)=>{
   prevent_auto_reset_after_click = true;
   switch(selectedSettings.value){
     case "option1":
-      fraction_vaccinated_newborns.value = 0.8
+      // fraction_vaccinated_newborns.value = 0.8
       fractio_immune_population.value = 0.6
       recalculateDatasets();
       break;
     case "no_vax":
-      fraction_vaccinated_newborns.value = 0.0
+      // fraction_vaccinated_newborns.value = 0.0
       fractio_immune_population.value = 0.0
       recalculateDatasets();
       break;
-    case "immune_pop_no_vax":
-      fraction_vaccinated_newborns.value = 0.0
+    case "immune_pop":
+      // fraction_vaccinated_newborns.value = 0.0
       fractio_immune_population.value = 0.99
       recalculateDatasets();
       break;
@@ -327,6 +327,10 @@ watch(selectedSettings,(newValue,oldValue)=>{
       return;
   }
 })
+
+watch(selectedVaccine,(newValue,oldValue)=>{
+  recalculateDatasets()
+  })
 
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement)
 const chartData:any = ref({
@@ -405,10 +409,12 @@ async function recalculateDatasets() {
       case("opv"):
         console.log("opv")
         vaccineInfectionRate = 3.79/10e6;
+        cost_per_immunized_person = 7.66;
         break;
       case("ipv"):
         console.log("ipv")
         vaccineInfectionRate = 0;
+        cost_per_immunized_person = 11.30;
         break;
       case("10xopv"):
         console.log("10xopv")
@@ -564,7 +570,8 @@ async function recalculateDatasets() {
 
     totalDeaths.value = deathsAccum[deathsAccum.length-1][1]
 
-    totalVaccinatedPeople.value = seirData.y[seirData.y.length-1][4];
+    // totalVaccinatedPeople.value = seirData.y[seirData.y.length-1][4];
+    totalVaccinatedPeople.value =fractio_immune_population.value * N
 
     totalVaccineRelatedDeaths.value = totalVaccinatedPeople.value * (vaccineInfectionRate) // platt et. al 2014, median value
     let immunized_people = seirData.y.map((row:number[])=>row[3]);
@@ -587,7 +594,9 @@ async function recalculateDatasets() {
 </script>
 <style scoped>
 .sliders{
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 
@@ -734,7 +743,6 @@ svg{
   margin-top: 1vh;
   margin-bottom: 1vh;
   overflow: hidden;
-
   height: 7vh;
   margin-left: .5em;
   

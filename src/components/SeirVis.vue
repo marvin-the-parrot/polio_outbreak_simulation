@@ -25,15 +25,13 @@
         <p class="background-text  ">{{ country }} selected. {{ countrySpreadSentence }} We will be simulating with 1 Million people. <br><br> Polio has a long history, the first documented cases were found on an egyptian stele dated to 1400 BC</p>
       </div>
 
-      <div class="box box-text" data-speed="1">
+      <!-- <div class="box box-text" data-speed="1">
         <p class="non-background-text">Babys are protected from Polio for the first few months from their parents antibodies. It's important to vaccinate them in this timeframe.  <br> <br> Vaccination does have a cost in production and distribution keep that in mind.</p>
       </div>
 
       <div class="box box-immune-pop" data-speed="1">
         <h1 style="margin-top: 10vh;">What percentage of babys are we vaccinating against Polio?</h1>
         <p class="big-percentage">{{ (fraction_vaccinated_babies * 100).toFixed(0) }}%</br></p>
-          <!-- track-color="C7CCB9" 
-           track-color="#FEE1C7"-->
           <v-slider
             v-model="fraction_vaccinated_babies"
             track-size="300"
@@ -54,7 +52,7 @@
           <div style="width: 100%; margin-bottom: 2em;">
             <button class="button_results" @click="scrollToPopulationImmune">Continue</button>
           </div>
-      </div>
+      </div> -->
 
       <div class="box box-text pre-vacc-percentage-box" data-speed="1">
         <p class="non-background-text">The oldest Polio Vacine (OPV) has a small chance of causing a polio infection. 1 in 2.700.000 doses have this effect. <br></br><br></br> If we vaccinate everybody without wild polio existing we could cause additional infections, if we do not vaccinate, immunity will fade.</p>
@@ -62,7 +60,6 @@
 
       <div class="box box-immune-pop" data-speed="1">
         <h1>What percentage of the population is already immune (either recovered or vaccinated)</h1>
-        80% immunity is often enough <br></br> to break chains of infections
         <p class="big-percentage">{{ (fractio_immune_population * 100).toFixed(0) }}%</br></p>
           <!-- track-color="C7CCB9" 
            track-color="#FEE1C7"-->
@@ -87,6 +84,42 @@
             <button class="button_results" @click="scrollToTool">Show me the results!</button>
           </div>
       </div>
+
+      <div class="box box-text pre-vacc-percentage-box" data-speed="1">
+        <p class="non-background-text breathing-text">The iron lung, a negative pressure breathing apparatus for patients who could no longer breathe on their own, was invented to increase the survivability of people suffering from paralytic polio. </p>
+      </div>
+
+      <div class="box box-immune-pop" data-speed="1">
+        <h1>What Vaccine are we using?</h1>
+          <!-- track-color="C7CCB9" 
+           track-color="#FEE1C7"-->
+          <v-btn-toggle
+          v-model="vaccine_used"
+          rounded="1"
+          group
+          class="btn-group"
+          color="#99621E"
+          base-color="#FEE1C7"
+          elevation="6"
+          direction="vertical"
+        >
+        <!-- Cost of vaccinating a child
+         https://www.unicef.org/media/161751/file/Standard%20costs%20of%20fully%20vaccinating%20a%20child_UNICEF_2024.pdf.pdf 
+         IPV: 11.30$
+         OPV: 7.66$ -->
+          <v-btn value="opv" class="text-buttons" >
+            OPV (Old)<br></br> 11.30$ per Immunization
+          </v-btn>
+
+          <v-btn value="ipv" class="text-buttons">
+            IPV (Modern) <br></br> 7.66$ per Immunization
+          </v-btn>
+
+        </v-btn-toggle>
+          <div style="width: 100%; margin-bottom: 2em;">
+            <button class="button_results" @click="scrollToTool">Show me the results!</button>
+          </div>
+      </div>
       
       <div class="box box-sim" data-speed="1">
         <SeirLineChart initialDisplay="numbers" 
@@ -94,6 +127,7 @@
         :initialVaccineRate=fraction_vaccinated_babies
         :initialImmunePopulation=fractio_immune_population
         :initialBeta = initialSpreadRate
+        :initialVaccineUsed = vaccine_used
       ></SeirLineChart>
       </div>
       <!-- <div class="box box-immun-pop">
@@ -118,6 +152,7 @@ const main = ref();
 const fractio_immune_population = ref(0);
 const fraction_vaccinated_babies = ref(0);
 const initialSpreadRate = ref(1);
+const vaccine_used = ref("");
 const toolVisible = ref(false);
 let smoother: any;
 let ctx: any;
@@ -236,6 +271,9 @@ h1 {
 h2,h3,h4,h5,h6{
   color: black;
 }
+.text-buttons{
+  height: 200px;
+}
 
 .changeNumberGreen{
   color: green;
@@ -294,6 +332,10 @@ h2,h3,h4,h5,h6{
   font-size: x-large;
   color: black;
   opacity: 0;
+}
+
+.breathing-text{
+  animation: breath 7s infinite ease-in-out
 }
 
 .non-background-text{
@@ -446,6 +488,18 @@ img + p{
 
 .white {
   background-color: white;
+}
+
+@keyframes breath{
+  0%{
+    transform: scale(90%)
+  }
+  40%{
+    transform: scale(100%);
+  }
+  100%{
+    transform: scale(90%);
+  }
 }
 
 @keyframes wipe-progress {
