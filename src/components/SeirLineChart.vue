@@ -78,11 +78,11 @@
             80%
           </v-btn>
           <v-btn value="no_vax" class="text-body-1" slim>
-            No <br></br>Vaccines
+            No <br/>Vaccines
           </v-btn>
 
           <v-btn value="immune_pop" class="text-body-1"  slim>
-            Immune Population <br></br> No Vaccines
+            Immune Population <br/> No Vaccines
           </v-btn>
 
           <v-btn value="custom" class="text-body-1" max-width="25%" slim>
@@ -185,6 +185,7 @@ import { Line } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement, type ChartOptions } from 'chart.js'
 // @ts-ignore
 import { calculateSEIRData } from '../scripts/seirData'
+import { fraction } from 'mathjs';
 
 const props = defineProps({initialDisplay: String,initialVaccineRate: Number, initialImmunePopulation: Number, initialBeta: Number, initialVaccineUsed: String})
 
@@ -571,8 +572,7 @@ async function recalculateDatasets() {
     totalDeaths.value = deathsAccum[deathsAccum.length-1][1]
 
     // totalVaccinatedPeople.value = seirData.y[seirData.y.length-1][4];
-    totalVaccinatedPeople.value =fractio_immune_population.value * N
-
+    fractio_immune_population.value ? totalVaccinatedPeople.value = fractio_immune_population.value * N : totalVaccinatedPeople.value = 0;
     totalVaccineRelatedDeaths.value = totalVaccinatedPeople.value * (vaccineInfectionRate) // platt et. al 2014, median value
     let immunized_people = seirData.y.map((row:number[])=>row[3]);
     totalImmunizedPeople.value = immunized_people.reduce((acc: any,curr: any)=>acc+curr);
