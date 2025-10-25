@@ -149,25 +149,27 @@
               {{ modelValue*100 + "%" }}
           </template>
         </v-slider>
-        <h3>Vaccine Used</h3>
-        <v-btn-toggle
-          v-model="selectedVaccine"
-          rounded="1"
-          group
-          class="btn-group"
-          color="#99621E"
-          base-color="#FEE1C7"
-          elevation="6"
-        >
-          <v-btn value="opv" class="text-body-1"  >
-            OPV (Old)
-          </v-btn>
+        <h3 style="margin-bottom: 1em;">Vaccine Used</h3>
+        <v-row align="center" justify="center">
+          <v-btn-toggle
+            v-model="selectedVaccine"
+            rounded="1"
+            group
+            class="btn-group"
+            color="#99621E"
+            base-color="#FEE1C7"
+            elevation="6"
+          >
+            <v-btn value="opv" class="text-body-1"  >
+              OPV (Old)
+            </v-btn>
 
-          <v-btn value="ipv" class="text-body-1" >
-            IPV (Modern)
-          </v-btn>
+            <v-btn value="ipv" class="text-body-1" >
+              IPV (Modern)
+            </v-btn>
 
-        </v-btn-toggle>
+          </v-btn-toggle>
+        </v-row>
       </div>
     <div class="recalc-button">
       <button @click="recalculateDatasets" class="btn-primary">
@@ -735,6 +737,7 @@ svg{
 .recalc-button{
   display:flex;
   justify-content: space-evenly;
+  margin-top: 2em;
   width: 100vw;
   margin-bottom: 1em;
 }
