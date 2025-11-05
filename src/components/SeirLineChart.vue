@@ -75,14 +75,14 @@
           elevation="6"
         >
           <v-btn  value="option1" class="text-body-1" max-width="25%" >
-            80%
+            60%
           </v-btn>
           <v-btn value="no_vax" class="text-body-1" slim>
             No <br/>Vaccines
           </v-btn>
 
           <v-btn value="immune_pop" class="text-body-1"  slim>
-            Immune Population <br/> No Vaccines
+            Immune Population
           </v-btn>
 
           <v-btn value="custom" class="text-body-1" max-width="25%" slim>
@@ -111,13 +111,18 @@
               {{ modelValue*100 + "%" }}
           </template></v-slider> -->
         <h3>Spread of Polio</h3>
+        <v-row no-gutters>
+          <v-col class="v-col-3 " ><p class="countryLabels">Europe</p></v-col>
+          <v-col class="v-col-3 "><p class="countryLabels" >DRC</p></v-col>
+          <v-col class="v-col-3 "><p class="countryLabels" >North Africa</p></v-col>
+          <v-col class="v-col-3 "><p class="countryLabels" >India</p></v-col>
+        </v-row>
         <v-slider
           v-model="beta"
           :ticks="betaTextLabels"
           min="0.20"
-          max="1.15"
+          max="1.20"
           step="0.1"
-          thumb-label="always"
           tick-size="3"
           rounded="pill"
           track-size="20"
@@ -150,7 +155,7 @@
           </template>
         </v-slider>
         <h3 style="margin-bottom: 1em;">Vaccine Used</h3>
-        <v-row align="center" justify="center">
+        <v-row justify="center">
           <v-btn-toggle
             v-model="selectedVaccine"
             rounded="1"
@@ -253,7 +258,7 @@ const betaLabels: { [key: string]: string } = {
 
 let seirData:any;
 let firstPass = true;
-let N = 1000000; // Population (10^6)
+let N = 5000000; // Population (5*10^6)
 const beta = ref(props.initialBeta); // Contact rate
 let gamma = 0.067; // Recovery rate
 let sigma = 0.13; // Rate of incubation
@@ -574,7 +579,7 @@ async function recalculateDatasets() {
     totalDeaths.value = deathsAccum[deathsAccum.length-1][1]
 
     // totalVaccinatedPeople.value = seirData.y[seirData.y.length-1][4];
-    fractio_immune_population.value ? totalVaccinatedPeople.value = fractio_immune_population.value * N : totalVaccinatedPeople.value = 0;
+    fractio_immune_population.value ? totalVaccinatedPeople.value = fractio_immune_population.value * (N-5) : totalVaccinatedPeople.value = 0;
     totalVaccineRelatedDeaths.value = totalVaccinatedPeople.value * (vaccineInfectionRate) // platt et. al 2014, median value
     let immunized_people = seirData.y.map((row:number[])=>row[3]);
     totalImmunizedPeople.value = immunized_people.reduce((acc: any,curr: any)=>acc+curr);
@@ -600,10 +605,18 @@ async function recalculateDatasets() {
   flex-direction: column;
   justify-content: center;
 }
+.countryLabels{
+  border-left: 0.2rem dotted;
+  text-align: center;
+}
 
 
 p{
   color: black;
+}
+
+.countryLabels{
+  align-self: center;
 }
 
 .wrapper {
