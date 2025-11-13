@@ -55,11 +55,11 @@
       </div> -->
 
       <div class="box box-text pre-vacc-percentage-box" data-speed="1">
-        <p class="non-background-text">The oldest Polio Vacine (OPV) has a small chance of causing a polio infection. 1 in 2.700.000 doses have this effect. <br></br><br></br> If we vaccinate everybody without wild polio existing we could cause additional infections, if we do not vaccinate, immunity will fade.</p>
+        <p class="non-background-text">The oldest Polio Vacine (OPV) has a small chance of causing a polio infection. 1 in 2.700.000 doses have this effect. <br></br><br></br> Vaccination can cause outbreaks, but it also prevents the spread of polio.</p>
       </div>
 
       <div class="box box-immune-pop" data-speed="1">
-        <h1>What percentage of the population is already immune (either recovered or vaccinated)</h1>
+        <h1>What percentage of the population is already immune (recovered or vaccinated)</h1>
         <p class="big-percentage">{{ (fractio_immune_population * 100).toFixed(0) }}%</br></p>
           <!-- track-color="C7CCB9" 
            track-color="#FEE1C7"-->
@@ -91,31 +91,34 @@
 
       <div class="box box-immune-pop" data-speed="1">
         <h1>What Vaccine are we using?</h1>
-          <!-- track-color="C7CCB9" 
-           track-color="#FEE1C7"-->
-          <v-btn-toggle
-          v-model="vaccine_used"
-          rounded="1"
-          group
-          class="btn-group"
-          color="#99621E"
-          base-color="#FEE1C7"
-          elevation="6"
-          direction="vertical"
-        >
         <!-- Cost of vaccinating a child
          https://www.unicef.org/media/161751/file/Standard%20costs%20of%20fully%20vaccinating%20a%20child_UNICEF_2024.pdf.pdf 
          IPV: 11.30$
          OPV: 7.66$ -->
-          <v-btn value="opv" class="text-buttons" >
-            OPV (Old)<br></br> 11.30$ per Immunization
-          </v-btn>
+          <!-- track-color="C7CCB9" 
+           track-color="#FEE1C7"-->
+          <v-row justify="center">
+            <v-col class="v-col-8">
+              <v-btn-toggle
+              v-model="vaccine_used"
+              rounded="1"
+              direction="vertical"
+              class="btn-group"
+              color="#C7CCB9"
+              base-color="#99621E"
+              elevation="6"
+            >
+              <v-btn value="opv" class="text-body-1" size="x-large"  >
+                OPV (Old)<br></br> 11.30$ per Immunization
+              </v-btn>
 
-          <v-btn value="ipv" class="text-buttons">
-            IPV (Modern) <br></br> 7.66$ per Immunization
-          </v-btn>
+              <v-btn value="ipv" class="text-body-1" size="x-large" >
+                IPV (Modern) <br></br> 7.66$ per Immunization
+              </v-btn>
 
-        </v-btn-toggle>
+            </v-btn-toggle>
+          </v-col>
+        </v-row>
           <div style="width: 100%; margin-bottom: 2em;">
             <button class="button_results" @click="scrollToTool">Show me the results!</button>
           </div>
@@ -358,6 +361,7 @@ h2,h3,h4,h5,h6{
   margin: .5em;
   padding: .5em;
   z-index: 10;
+  border-radius: .5em;
 }
 
 .button:focus{
