@@ -492,7 +492,7 @@ img + p{
 
 @keyframes breath{
   0%{
-    transform: scale(90%)
+    transform: scale(90%);
   }
   40%{
     transform: scale(100%);

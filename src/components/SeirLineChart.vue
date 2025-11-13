@@ -3,6 +3,7 @@
     <h2 class="simHeader">{{ simulation_duration_days }} days later</h2>
     <div class="carousel">
       <v-carousel
+        class="carousel"
         :show-arrows="false"
         height="40vh"
         delimiter-icon="test"
@@ -626,6 +627,9 @@ p{
   color: red;
 }
 
+.carousel{
+  touch-action: manipulation
+}
 .car-item{
   height: 100%;
 }
