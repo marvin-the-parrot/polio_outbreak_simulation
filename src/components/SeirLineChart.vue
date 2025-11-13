@@ -643,7 +643,7 @@ p{
 }
 
 .carousel{
-  touch-action: manipulation
+  touch-action: none;
 }
 .car-item{
   height: 100%;

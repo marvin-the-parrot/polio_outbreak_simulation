@@ -4,6 +4,18 @@
     <div id="smooth-content">
       <div class="box box-a " data-speed="1">
         <img class="title" src="../assets/title_bsc.svg" />
+        <p class="text">Vaccines and Polio share a long history together, if you want to find out how they interact for yourself just scroll along.</p>
+        <a class="scroll"></a>
+      </div>
+
+      <div class="box box-a " data-speed="1">
+        <p class="text">As of today, Polio is a pretty well controlled disease. Most regions do not have any cases.</p>
+        <img class="title" src="../assets/polio.png"></img>
+        <p class="text">Want to try simulating an outbreak for yourself?</p>
+      </div>
+
+
+      <div class="box box-a " data-speed="1">
         <h1>Where are we simulating a polio outbreak?</h1>
         <button class="button" @click="zoomToCongo">
           <img src="../assets/drc_flag.png" style="background-color: grey;" class="person"></img>
@@ -350,6 +362,15 @@ h2,h3,h4,h5,h6{
   color: black;
 }
 
+.text{
+  justify-content: center;
+  align-self: center;
+  padding: 2em;
+  padding-top: 0;
+  font-size: x-large;
+  color: black;
+}
+
 .mapBox {
   overflow: hidden;
 }
@@ -480,7 +501,51 @@ img + p{
   font-size: xx-large;
 }
 
+.scroll {
+  position: relative;
+  display: block;
+  font-size: 0.933rem;
+  color: var(--secondary-color);
+  text-decoration: none;
+  padding: 10px 10px 10px 40px;
+  &::before {
+    display: block;
+    position: absolute;
+    top:-2px;
+    left:0;
+    width: 24px;
+    height: 40px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 12px;
+    content:"";
+  }
+  &::after {
+    display: block;
+    position: absolute;
+    top:9px;
+    left:11px;
+    width: 2px;
+    height: 8px;
+    background: var(--secondary-color);
+    border-radius: 1px;
+    content:"";
+    animation-name: scroll;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    animation-direction: reverse;
+  }
+}
 
+@keyframes scroll {
+  0% { opacity: 1; height: 8px;}
+  20% { opacity: 1; height: 8px;}
+  30% { transform: translateY(0); opacity: 1; height: 19px;}
+  40% { opacity: 1;}
+  80% { transform: translateY(19px); opacity: 0; height: 0;}
+  81% { transform: translateY(0); opacity: 0; height: 8px;}
+  100% { opacity: 1; height: 8px;}
+}
 
 .green {
   background-color: green
