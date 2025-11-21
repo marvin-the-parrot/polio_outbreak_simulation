@@ -76,8 +76,9 @@
           <!-- track-color="C7CCB9" 
            track-color="#FEE1C7"-->
           <v-slider
+            width="100%"
             v-model="fractio_immune_population"
-            track-size="300"
+            track-size="100"
             track-color="#C7CCB9"
             track-fill-color="#99621E"
             max="1.0"
@@ -92,9 +93,10 @@
                   {{ modelValue*100 + "%" }}
             </template>
           </v-slider>
-          <div style="width: 100%; margin-bottom: 2em;">
-            <button class="button_results" @click="scrollToTool">Show me the results!</button>
-          </div>
+
+          <a class="scroll_primary"></a>
+
+
       </div>
 
       <div class="box box-text pre-vacc-percentage-box" data-speed="1">
@@ -110,7 +112,7 @@
           <!-- track-color="C7CCB9" 
            track-color="#FEE1C7"-->
           <v-row justify="center">
-            <v-col class="v-col-8">
+            <v-col class="v-col-12">
               <v-btn-toggle
               v-model="vaccine_used"
               rounded="1"
@@ -131,9 +133,7 @@
             </v-btn-toggle>
           </v-col>
         </v-row>
-          <div style="width: 100%; margin-bottom: 2em;">
-            <button class="button_results" @click="scrollToTool">Show me the results!</button>
-          </div>
+       
       </div>
       
       <div class="box box-sim" data-speed="1">
@@ -172,7 +172,6 @@ const toolVisible = ref(false);
 let smoother: any;
 let ctx: any;
 let map: any;
-
 
 // const betaLabels = {
 //   0.27: 'Western Europe',
@@ -252,6 +251,9 @@ onMounted(() => {
       markers: false,
     });
   }, main.value);
+
+
+
 });
 
 onUnmounted(() => {
@@ -527,6 +529,42 @@ img + p{
     width: 2px;
     height: 8px;
     background: var(--secondary-color);
+    border-radius: 1px;
+    content:"";
+    animation-name: scroll;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    animation-direction: reverse;
+  }
+}
+
+.scroll_primary {
+  position: relative;
+  display: block;
+  font-size: 0.933rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 10px 10px 10px 40px;
+  &::before {
+    display: block;
+    position: absolute;
+    top:-2px;
+    left:0;
+    width: 24px;
+    height: 40px;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    content:"";
+  }
+  &::after {
+    display: block;
+    position: absolute;
+    top:9px;
+    left:11px;
+    width: 2px;
+    height: 8px;
+    background: var(--primary-color);
     border-radius: 1px;
     content:"";
     animation-name: scroll;

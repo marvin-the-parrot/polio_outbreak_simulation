@@ -65,31 +65,7 @@
         </v-carousel-item>
       </v-carousel>
     </div>
-    <v-btn-toggle
-          v-model="selectedSettings"
-          rounded="1"
-          group
-          density="compact"
-          class="btn-group"
-          color="#99621E"
-          base-color="#FEE1C7"
-          elevation="6"
-        >
-          <v-btn  value="option1" class="text-body-1" max-width="25%" >
-            60%
-          </v-btn>
-          <v-btn value="no_vax" class="text-body-1" slim>
-            No <br/>Vaccines
-          </v-btn>
-
-          <v-btn value="immune_pop" class="text-body-1"  slim>
-            Immune Population
-          </v-btn>
-
-          <v-btn value="custom" class="text-body-1" max-width="25%" slim>
-            Custom
-          </v-btn>
-        </v-btn-toggle>
+    
 
     <div class="sliders">
         <!-- <h3>Vaccinated Newborns</h3>
@@ -129,7 +105,7 @@
           track-size="20"
           track-color="#FEE1C7"
           track-fill-color="#99621E"
-          thumb-size="0"
+          thumb-color="#FFF"
         >
         <template v-slot:thumb-label="{ modelValue }">
             {{ betaLabels[modelValue] }}
@@ -148,13 +124,43 @@
           track-size="20"
           track-color="#FEE1C7"
           track-fill-color="#99621E"
-          thumb-size="0"
+          thumb-color="#FFF"
+
         >
       <template v-slot:thumb-label="{ modelValue }">
         <!-- think about if we want to add cost of vaccination -->
               {{ modelValue*100 + "%" }}
           </template>
         </v-slider>
+
+        <h3>Presets</h3>
+
+        <v-btn-toggle
+          v-model="selectedSettings"
+          rounded="1"
+          group
+          density="compact"
+          class="btn-group"
+          color="#99621E"
+          base-color="#FEE1C7"
+          elevation="6"
+        >
+          <v-btn  value="option1" class="text-body-1" max-width="25%" >
+            60%
+          </v-btn>
+          <v-btn value="no_vax" class="text-body-1" slim>
+            No <br/>Vaccines
+          </v-btn>
+
+          <v-btn value="immune_pop" class="text-body-1"  slim>
+            Immune Population
+          </v-btn>
+
+          <v-btn value="custom" class="text-body-1" max-width="25%" slim>
+            Custom
+          </v-btn>
+        </v-btn-toggle>
+
         <h3 style="margin-bottom: 1em;">Vaccine Used</h3>
         <v-row justify="center">
           <v-btn-toggle
@@ -383,7 +389,7 @@ const chartOptions:any = {
       ticks: {
         callback: function (value: any){
           // return value/1000000;
-          return value/1000 + "K"
+          return value/1000000 + "M"
         }
       }
     }
@@ -611,6 +617,8 @@ async function recalculateDatasets() {
   text-align: center;
 }
 
+h3{
+}
 
 p{
   color: black;
