@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h2 class="simHeader">{{ simulation_duration_days }} days later</h2>
+    <h2 class="simHeader">{{ simulation_duration_days }} {{ $t("text.daysLater") }} </h2>
     <div class="carousel">
       <v-carousel
         class="carousel"
@@ -23,15 +23,15 @@
               <svg class="peoples" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
             </div>
             <div class="legendblock">
-              <p class="legendText">Dead</p>
+              <p class="legendText">{{ $t("text.dead") }} </p>
               <svg class="peoples deadPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
             </div>
             <div class="legendblock">
-              <p class="legendText">Paralysis</p>
+              <p class="legendText">{{ $t("text.paralysis") }} </p>
               <svg class="peoples paralysisPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
             </div>
             <div class="legendblock">
-              <p class="legendText">Vaccinated</p>
+              <p class="legendText">{{ $t("text.vaccinated") }} </p>
               <svg class="peoples vaccinatedPeople" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. --><path d="M376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144C350.9 144 376 118.9 376 88zM400 300.7L446.3 363.1C456.8 377.3 476.9 380.3 491.1 369.7C505.3 359.1 508.3 339.1 497.7 324.9L427.2 229.9C402 196 362.3 176 320 176C277.7 176 238 196 212.8 229.9L142.3 324.9C131.8 339.1 134.7 359.1 148.9 369.7C163.1 380.3 183.1 377.3 193.7 363.1L240 300.7L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 416C304 407.2 311.2 400 320 400C328.8 400 336 407.2 336 416L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 300.7z"/></svg>
             </div>
             
@@ -43,17 +43,17 @@
         <v-carousel-item>
           <div class="box-numbers car-item">
             <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalDeaths) }}</p>
-              <p v-if="showChange" :class="{changeNumberGreen: (totalDeaths - totalDeathsOld)<0,changeNumberRed: (totalDeaths - totalDeathsOld)>0}"><span v-if="(totalDeaths - totalDeathsOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalDeaths - totalDeathsOld)) }}</p> <p>Deaths</p>
+              <p v-if="showChange" :class="{changeNumberGreen: (totalDeaths - totalDeathsOld)<0,changeNumberRed: (totalDeaths - totalDeathsOld)>0}"><span v-if="(totalDeaths - totalDeathsOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalDeaths - totalDeathsOld)) }}</p> <p>{{ $t("text.dead") }} </p>
             </div>  
             <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalParalysis) }}</p>
-              <p v-if="showChange" :class="{changeNumberGreen: (totalParalysis- totalParalysisOld)<0,changeNumberRed: (totalParalysis- totalParalysisOld)>0}"><span v-if="(totalParalysis - totalParalysisOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalParalysis - totalParalysisOld)) }}</p> <p>Paralysis</p> 
+              <p v-if="showChange" :class="{changeNumberGreen: (totalParalysis- totalParalysisOld)<0,changeNumberRed: (totalParalysis- totalParalysisOld)>0}"><span v-if="(totalParalysis - totalParalysisOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalParalysis - totalParalysisOld)) }}</p> <p>{{ $t("text.paralysis") }} </p> 
             </div>
             <div class ="card"><p class="big-number" >{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format(totalVaccinatedPeople) }}</p>
-              <p v-if="showChange" :class="{changeNumberGreen: (totalVaccinatedPeople - totalVaccinatedPeopleOld)>0,changeNumberRed: (totalVaccinatedPeople - totalVaccinatedPeopleOld)<0}"><span v-if="(totalVaccinatedPeople - totalVaccinatedPeopleOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalVaccinatedPeople - totalVaccinatedPeopleOld)) }}</p> <p>Vaccinated</p>
-              <p>Costing: {{new Intl.NumberFormat('en-GB',{maximumFractionDigits:0}).format(totalVaccinatedPeople * cost_per_immunized_person) }} $ </p> 
+              <p v-if="showChange" :class="{changeNumberGreen: (totalVaccinatedPeople - totalVaccinatedPeopleOld)>0,changeNumberRed: (totalVaccinatedPeople - totalVaccinatedPeopleOld)<0}"><span v-if="(totalVaccinatedPeople - totalVaccinatedPeopleOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 0 }).format((totalVaccinatedPeople - totalVaccinatedPeopleOld)) }}</p> <p>{{ $t("text.vaccinated") }} </p>
+              <p>{{ $t("text.costing") }}  {{new Intl.NumberFormat('en-GB',{maximumFractionDigits:0}).format(totalVaccinatedPeople * cost_per_immunized_person) }} $ </p> 
             </div>
             <div class ="card"><p class="big-number" >{{  new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 1 }).format(totalVaccineRelatedDeaths) }}</p>
-              <p v-if="showChange" :class="{changeNumberGreen: (totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)<0,changeNumberRed: (totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)}"><span v-if="(totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 1 }).format((totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)) }}</p> <p>Polio Deaths due to Vaccine</p> 
+              <p v-if="showChange" :class="{changeNumberGreen: (totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)<0,changeNumberRed: (totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)}"><span v-if="(totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)>0">+</span>{{ new Intl.NumberFormat('en-GB',{ maximumFractionDigits: 1 }).format((totalVaccineRelatedDeaths - totalVaccineRelatedDeathsOld)) }}</p> <p>{{ $t("text.deathsfromvaccine") }} </p> 
             </div>
           </div>
         </v-carousel-item>
@@ -87,7 +87,7 @@
       <template v-slot:thumb-label="{ modelValue }">
               {{ modelValue*100 + "%" }}
           </template></v-slider> -->
-        <h3>Spread of Polio</h3>
+        <h3>{{ $t("text.spreadOfPolio") }} </h3>
         <v-row no-gutters>
           <v-col class="v-col-3 " ><p class="countryLabels">Europe</p></v-col>
           <v-col class="v-col-3 "><p class="countryLabels" >DRC</p></v-col>
@@ -111,7 +111,7 @@
             {{ betaLabels[modelValue] }}
           </template>
         </v-slider>
-        <h3>Vaccinated Population at Start</h3>
+        <h3>{{ $t("text.vaccinatedPopluationAtStart") }} </h3>
         <v-slider
           v-model="fractio_immune_population"
           max="1"
@@ -133,7 +133,7 @@
           </template>
         </v-slider>
 
-        <h3>Presets</h3>
+        <h3>{{ $t("text.presets") }}</h3>
 
         <v-btn-toggle
           v-model="selectedSettings"
@@ -153,15 +153,15 @@
           </v-btn>
 
           <v-btn value="immune_pop" class="text-body-1"  slim>
-            Immune Population
+            {{ $t("text.immunePopulation") }}
           </v-btn>
 
           <v-btn value="custom" class="text-body-1" max-width="25%" slim>
-            Custom
+            {{ $t("text.custom") }}
           </v-btn>
         </v-btn-toggle>
 
-        <h3 style="margin-bottom: 1em;">Vaccine Used</h3>
+        <h3 style="margin-bottom: 1em;">{{ $t("text.vaccineUsed") }}</h3>
         <v-row justify="center">
           <v-btn-toggle
             v-model="selectedVaccine"
@@ -173,11 +173,11 @@
             elevation="6"
           >
             <v-btn value="opv" class="text-body-1"  >
-              OPV (Old)
+              {{ $t("text.vaccineOld") }}
             </v-btn>
 
             <v-btn value="ipv" class="text-body-1" >
-              IPV (Modern)
+              {{ $t("text.vaccineNew") }}
             </v-btn>
 
           </v-btn-toggle>
@@ -185,7 +185,7 @@
       </div>
     <div class="recalc-button">
       <button @click="recalculateDatasets" class="btn-primary">
-          Recalculate Outbreak
+        {{ $t("text.recalculateOutbreak") }}
       </button>
     </div>
     

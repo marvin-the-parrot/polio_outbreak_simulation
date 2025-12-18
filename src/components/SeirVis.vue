@@ -4,19 +4,19 @@
     <div id="smooth-content">
       <div class="box box-a " data-speed="1">
         <img class="title" src="../assets/title_bsc.svg" />
-        <p class="text">Vaccines and Polio share a long history together, if you want to find out how they interact for yourself just scroll along.</p>
+        <p class="text">{{ $t("text.vaccineHistory") }}</p>
         <a class="scroll"></a>
       </div>
 
       <div class="box box-a " data-speed="1">
-        <p class="text">As of today, Polio is a pretty well controlled disease. Most regions do not have any cases.</p>
+        <p class="text">{{ $t("text.controlledDisease") }}</p>
         <img class="title" src="../assets/polio.png"></img>
-        <p class="text">Want to try simulating an outbreak for yourself?</p>
+        <p class="text">{{ $t("text.simulateYourself") }}</p>
       </div>
 
 
       <div class="box box-a " data-speed="1">
-        <h1>Where are we simulating a polio outbreak?</h1>
+        <h1>{{ $t("text.whereOutbreak") }}</h1>
         <button class="button" @click="zoomToCongo">
           <img src="../assets/drc_flag.png" style="background-color: grey;" class="person"></img>
           <p>D. R. of Congo</p>
@@ -29,12 +29,12 @@
           <img src="../assets/france_flag.png" style="background-color: grey;" class="person"></img>
           <p>France</p>
         </button>
-        <button clasS="button_skip" @click="scrollToTool">Skip this! Take me to the simulation Tool!</button>
+        <button clasS="button_skip" @click="scrollToTool">{{ $t("text.skip") }}</button>
       </div>
       <div class="box mapBox box-c" data-speed="1">
         <img class="map" src="../assets/world.svg">
         <p class="background-text  "></p>
-        <p class="background-text  ">{{ country }} selected. {{ countrySpreadSentence }} We will be simulating with 1 Million people. <br><br> Polio has a long history, the first documented cases were found on an egyptian stele dated to 1400 BC</p>
+        <p class="background-text  ">{{country}} {{ $t("text.countrySelected") }} {{ countrySpreadSentence }}<br><br> {{ $t("text.historyStele") }}</p>
       </div>
 
       <!-- <div class="box box-text" data-speed="1">
@@ -67,11 +67,11 @@
       </div> -->
 
       <div class="box box-text pre-vacc-percentage-box" data-speed="1">
-        <p class="non-background-text">The oldest Polio Vacine (OPV) has a small chance of causing a polio infection. 1 in 2.700.000 doses have this effect. <br></br><br></br> Vaccination can cause outbreaks, but it also prevents the spread of polio.</p>
+        <p class="non-background-text">{{ $t("text.oldVaccine") }}</p>
       </div>
 
       <div class="box box-immune-pop" data-speed="1">
-        <h1>What percentage of the population is already immune (recovered or vaccinated)</h1>
+        <h1>{{ $t("text.whatPercentageImmune") }}</h1>
         <p class="big-percentage">{{ (fractio_immune_population * 100).toFixed(0) }}%</br></p>
           <!-- track-color="C7CCB9" 
            track-color="#FEE1C7"-->
@@ -100,11 +100,11 @@
       </div>
 
       <div class="box box-text pre-vacc-percentage-box" data-speed="1">
-        <p class="non-background-text breathing-text">The iron lung, a negative pressure breathing apparatus for patients who could no longer breathe on their own, was invented to increase the survivability of people suffering from paralytic polio. </p>
+        <p class="non-background-text breathing-text">{{ $t("text.ironLung") }} </p>
       </div>
 
       <div class="box box-immune-pop" data-speed="1">
-        <h1>What Vaccine are we using?</h1>
+        <h1>{{ $t("text.whatVaccine") }} </h1>
         <!-- Cost of vaccinating a child
          https://www.unicef.org/media/161751/file/Standard%20costs%20of%20fully%20vaccinating%20a%20child_UNICEF_2024.pdf.pdf 
          IPV: 11.30$
@@ -123,11 +123,11 @@
               elevation="6"
             >
               <v-btn value="opv" class="text-body-1" size="x-large"  >
-                OPV (Old)<br></br> 11.30$ per Immunization
+                OPV (Old)<br></br> {{ $t("text.price.old") }} 
               </v-btn>
 
               <v-btn value="ipv" class="text-body-1" size="x-large" >
-                IPV (Modern) <br></br> 7.66$ per Immunization
+                IPV (Modern) <br></br> {{ $t("text.price.new") }} 
               </v-btn>
 
             </v-btn-toggle>
@@ -154,6 +154,9 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n() 
+
 import SeirLineChart from './SeirLineChart.vue'
 import { gsap } from "gsap";
 import { onMounted, onUnmounted, ref } from 'vue';
