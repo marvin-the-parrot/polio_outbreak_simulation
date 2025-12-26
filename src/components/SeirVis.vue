@@ -3,15 +3,25 @@
   <div id="smooth-wrapper" ref="main">
     <div id="smooth-content">
       <div class="box box-a " data-speed="1">
+      <button></button>
         <img class="title" src="../assets/title_bsc.svg" />
         <p class="text">{{ $t("text.vaccineHistory") }}</p>
         <a class="scroll"></a>
       </div>
 
       <div class="box box-a " data-speed="1">
-        <p class="text">{{ $t("text.controlledDisease") }}</p>
-        <img class="title" src="../assets/polio.png"></img>
-        <p class="text">{{ $t("text.simulateYourself") }}</p>
+        
+        <v-col>
+          <p class="text">{{ $t("text.controlledDisease") }}</p>
+        </v-col>
+        <v-col>
+          <div class="historic_chart">
+            <Line id="polio-chart" :options="historicChartOptions" :data="histoicChartData" style="height: 40vh;"/>
+          </div>
+        </v-col>
+        <v-col>
+          <p class="text">{{ $t("text.simulateYourself") }}</p>
+        </v-col>
       </div>
 
 
@@ -156,22 +166,24 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n() 
-
+import { Line } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement, type ChartOptions } from 'chart.js'
 import SeirLineChart from './SeirLineChart.vue'
 import { gsap } from "gsap";
 import { onMounted, onUnmounted, ref } from 'vue';
-
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { fraction, number } from 'mathjs';
+import { fraction, number, re } from 'mathjs';
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const main = ref();
+
 const fractio_immune_population = ref(0);
 const fraction_vaccinated_babies = ref(0);
 const initialSpreadRate = ref(1);
 const vaccine_used = ref("");
 const toolVisible = ref(false);
+const filepath_csv:string = './assets/polio_cases_year.csv'
 let smoother: any;
 let ctx: any;
 let map: any;
@@ -222,6 +234,50 @@ const scrollToPopulationImmune = () =>{
   smoother.scrollTo('.pre-vacc-percentage-box',true,'center center');
 }
 
+const historicChartOptions:any = {
+  responsive: true,
+  maintainAspectRatio: false,
+  elements: {
+    point: {
+      radius: 0
+    }
+  },
+  plugins: {
+    legend: {display:false},
+    title: {
+      display: true,
+      text: 'Global Polio Cases per Year',
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        color: '#000000',
+        drawTicks: true,
+      },
+      ticks: {
+        color: '#000000',
+      },
+      border: {
+        color: '#000000',
+      }
+    },
+    y: {
+      grid: {
+        color: '#000000',
+      },
+      ticks: {
+        color: '#000000',
+      },
+      border: {
+        color: '#000000',
+      }
+    }
+  }
+}
+
+
+
 const country = ref()
 const countrySpreadSentence = ref()
 
@@ -239,6 +295,34 @@ const percentageLabels: { [key: string]: string } = {
   1.0: '100%',
 }
 
+const data_years = [
+  1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 
+  1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 
+  2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 
+  2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 
+  2020, 2021, 2022, 2023
+];
+
+const data_polioCases = [
+  91994, 49161, 49035, 33145, 29757, 35882, 33761, 28329, 38360, 27090, 
+  33719, 16786, 15092, 16919, 12173, 16037, 14700, 7952, 7616, 20650, 
+  14294, 581, 1554, 3129, 7434, 7665, 8729, 3108, 7161, 6328, 
+  4970, 2842, 1183, 2009, 392, 126, 35, 154, 546, 2317, 
+  4452, 3808, 5075, 3563
+];
+
+const histoicChartData:any = ref({
+  labels: data_years,
+  datasets: [
+    {
+      label: 'Global Polio Cases',
+      data: data_polioCases, // Y-axis
+      borderColor: '#ff0000',
+      backgroundColor: 'rgba(255, 0, 0, 0.2)',
+    }
+  ]
+})
+
 onMounted(() => {
   ctx = gsap.context((self) => {
     smoother = ScrollSmoother.create({
@@ -254,7 +338,6 @@ onMounted(() => {
       markers: false,
     });
   }, main.value);
-
 
 
 });
@@ -347,7 +430,7 @@ h2,h3,h4,h5,h6{
 
 .background-text{
   position:absolute;
-  top:130vh;
+  top:315vh;
   padding: 2em;
   font-size: x-large;
   color: black;
@@ -374,6 +457,12 @@ h2,h3,h4,h5,h6{
   padding-top: 0;
   font-size: x-large;
   color: black;
+}
+
+.historic_chart{
+  /* max-height: 70vh;
+  min-height: 50vh; */
+  height: 100%;
 }
 
 .mapBox {
