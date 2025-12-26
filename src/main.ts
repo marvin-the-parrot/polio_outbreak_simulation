@@ -19,7 +19,7 @@ const vuetify = createVuetify({
 })
 const i18n = createI18n({
   legacy: false,
-  locale: 'de',
+  locale: 'en',
   fallbackLocale: 'de',
   messages: {
     en: {
@@ -47,8 +47,9 @@ const i18n = createI18n({
         costing: 'Costing:',
         spreadOfPolio: 'Spread of Polio',
         vaccinatedPopluationAtStart: 'Vaccinated Population at Start',
-        presets: 'presets',
-        immunePopulation: 'Immune Population',
+        presets: 'Presets',
+        immunePopulation1: 'Immune',
+        immunePopulation2: 'Population',
         custom: 'Custom',
         vaccineUsed: 'Vaccine Used',
         vaccineOld: 'OPV (Old)',
@@ -84,7 +85,8 @@ const i18n = createI18n({
         spreadOfPolio: 'Ausbreitung von Polio',
         vaccinatedPopluationAtStart: 'Geimpfte Bevölkerung zu Beginn',
         presets: 'Voreinstellungen',
-        immunePopulation: 'Immune Bevölkerung',
+        immunePopulation1: 'Immune Bevölkerung',
+        immunePopulation2: 'Bevölkerung',
         custom: 'Keine',
         vaccineUsed: 'Verwendeter Impfstoff',
         vaccineOld: 'OPV (Alt)',
@@ -94,9 +96,11 @@ const i18n = createI18n({
     }
   }
 })
+
 const app = createApp(App)
 
 app.use(i18n)
 app.use(vuetify)
 app.use(createPinia())
 app.mount('#app')
+

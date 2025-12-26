@@ -6,9 +6,9 @@
         class="carousel"
         :show-arrows="false"
         height="40vh"
-        delimiter-icon="test"
         :hide-delimiter-background="true"
-        :hide-delimiters="true"
+        :hide-delimiters="false"
+        color="#99621E"
         >
 
         <v-carousel-item> 
@@ -145,18 +145,18 @@
           base-color="#FEE1C7"
           elevation="6"
         >
-          <v-btn  value="option1" class="text-body-1" max-width="25%" >
+          <v-btn  value="option1" class="text-body-1">
             60%
           </v-btn>
-          <v-btn value="no_vax" class="text-body-1" slim>
+          <v-btn value="no_vax" class="text-body-1">
             No <br/>Vaccines
           </v-btn>
 
-          <v-btn value="immune_pop" class="text-body-1"  slim>
-            {{ $t("text.immunePopulation") }}
+          <v-btn value="immune_pop" class="text-body-1">
+            {{ $t("text.immunePopulation1") }} <br></br> {{ $t("text.immunePopulation2") }}
           </v-btn>
 
-          <v-btn value="custom" class="text-body-1" max-width="25%" slim>
+          <v-btn value="custom" class="text-body-1">
             {{ $t("text.custom") }}
           </v-btn>
         </v-btn-toggle>
@@ -172,13 +172,15 @@
             base-color="#FEE1C7"
             elevation="6"
           >
-            <v-btn value="opv" class="text-body-1"  >
+
+            <v-btn value="opv" class="text-body-1">
               {{ $t("text.vaccineOld") }}
             </v-btn>
 
             <v-btn value="ipv" class="text-body-1" >
               {{ $t("text.vaccineNew") }}
             </v-btn>
+
 
           </v-btn-toggle>
         </v-row>
@@ -403,6 +405,7 @@ onMounted(async () => {
     for(let i=0; i<peopleSpheres;i++){
       items.value[i] = i;
     }
+    console.log(selectedVaccine)
 })
 
 function switchView(){
@@ -613,19 +616,37 @@ async function recalculateDatasets() {
   justify-content: center;
 }
 .countryLabels{
-  border-left: 0.2rem dotted;
+  border-left: 0.2rem;
   text-align: center;
+  align-self: center;
 }
 
-h3{
+/* .carousel :deep(.v-carousel__controls .v-btn__overlay) {
+  opacity: 0.6;
+  border: 3px black dotted ;
+} */
+
+.carousel :deep(.v-carousel__controls .v-btn__overlay) {
+  opacity: 0.4;
+  box-shadow: 2px 2px 2px grey;
+  top: 20px;
+  left: 8px;
+  width: 50%;
+  height: 50%;
+}
+
+.carousel :deep(.v-carousel__controls .v-btn--active .v-btn__overlay){
+  opacity: 0.8;
+}
+
+
+.v-btn__content {
+  white-space: normal;
+  flex: auto;
 }
 
 p{
   color: black;
-}
-
-.countryLabels{
-  align-self: center;
 }
 
 .wrapper {
@@ -653,6 +674,7 @@ p{
 .carousel{
   touch-action: none;
 }
+
 .car-item{
   height: 100%;
 }

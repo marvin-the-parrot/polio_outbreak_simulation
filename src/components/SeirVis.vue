@@ -3,7 +3,29 @@
   <div id="smooth-wrapper" ref="main">
     <div id="smooth-content">
       <div class="box box-a " data-speed="1">
-      <button></button>
+      <v-spacer></v-spacer>
+
+      <div class="d-flex align-center mr-4">
+      <v-btn
+        variant="text"
+        density="compact"
+        :class="{ 'font-weight-black': currentLang === 'en' }"
+        @click="setLanguage('en')"
+      >
+        EN
+      </v-btn>
+
+      <span class="text-grey-lighten-1">|</span>
+      <v-btn
+        variant="text"
+        density="compact"
+        :class="{ 'font-weight-black': currentLang === 'de', 'color': 'white' }"
+        @click="setLanguage('de')"
+      >
+        DE
+      </v-btn>
+    </div>
+
         <img class="title" src="../assets/title_bsc.svg" />
         <p class="text">{{ $t("text.vaccineHistory") }}</p>
         <a class="scroll"></a>
@@ -128,8 +150,8 @@
               rounded="1"
               direction="vertical"
               class="btn-group"
-              color="#C7CCB9"
-              base-color="#99621E"
+              color="#99621E"
+              base-color="#C7CCB9"
               elevation="6"
             >
               <v-btn value="opv" class="text-body-1" size="x-large"  >
@@ -148,7 +170,7 @@
       
       <div class="box box-sim" data-speed="1">
         <SeirLineChart initialDisplay="numbers" 
-        :key="fractio_immune_population"
+        :key="fractio_immune_population || vaccine_used"
         :initialVaccineRate=fraction_vaccinated_babies
         :initialImmunePopulation=fractio_immune_population
         :initialBeta = initialSpreadRate
@@ -165,7 +187,7 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n() 
+const { t, locale } = useI18n({ useScope: 'global' })
 import { Line } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement, type ChartOptions } from 'chart.js'
 import SeirLineChart from './SeirLineChart.vue'
@@ -184,6 +206,7 @@ const initialSpreadRate = ref(1);
 const vaccine_used = ref("");
 const toolVisible = ref(false);
 const filepath_csv:string = './assets/polio_cases_year.csv'
+const currentLang = ref("en")
 let smoother: any;
 let ctx: any;
 let map: any;
@@ -226,6 +249,12 @@ const zoomToFrance = () => {
   gsap.to('.background-text', { opacity: 1, delay: 3.5, ease: "power2.inOut" })
 
 }
+
+const setLanguage = (lang:any) =>{
+  currentLang.value = lang
+  locale.value = lang
+}
+
 const scrollToTool = () =>{
   smoother.scrollTo('.box-sim',true,'center center');
 }
@@ -380,6 +409,10 @@ h2,h3,h4,h5,h6{
 
 .changeNumberGreen{
   color: green;
+}
+
+.font-weight-black{
+  font-weight: 700;
 }
 
 .big-percentage{
