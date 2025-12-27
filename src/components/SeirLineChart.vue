@@ -181,13 +181,12 @@
               {{ $t("text.vaccineNew") }}
             </v-btn>
 
-
           </v-btn-toggle>
         </v-row>
       </div>
     <div class="recalc-button">
       <button @click="recalculateDatasets" class="btn-primary">
-        {{ $t("text.recalculateOutbreak") }}
+              {{ $t("text.recalculateOutbreak") }}
       </button>
     </div>
     
@@ -610,6 +609,10 @@ async function recalculateDatasets() {
 
 </script>
 <style scoped>
+h3{
+  font-weight: 700;
+}
+
 .sliders{
   display: flex;
   flex-direction: column;
@@ -783,10 +786,10 @@ svg{
 
 .recalc-button{
   display:flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   margin-top: 2em;
   width: 100vw;
-  margin-bottom: 1em;
+  padding-right: 1em;
 }
 
 .btn-group{ 
