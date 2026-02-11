@@ -674,10 +674,6 @@ p{
   color: red;
 }
 
-.carousel{
-  touch-action: none;
-}
-
 .car-item{
   height: 100%;
 }
